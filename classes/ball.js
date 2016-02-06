@@ -22,11 +22,11 @@
   }
 
   var Ball = {
-    create: function(x, y, radius) {
+    create: function(location, velocity, radius) {
       var ball = Object.create(BALL_PROTOTYPE)
 
-      ball.location = {x: x, y: y}
-      ball.velocity = {x: 0, y: 0}
+      ball.location = location
+      ball.velocity = velocity
       ball.acceleration = {x: 0, y: 0}
       ball.radius = radius || 20;
 
@@ -34,21 +34,20 @@
     },
     /* class methods */
     createRandom: function () {
-      var x = Math.random() * WIDTH
-      var y = Math.random() * HEIGHT
+      var location = {
+        x: Math.random() * WIDTH,
+        y: Math.random() * HEIGHT
+      }
+
+      var velocity = {
+        x: Math.random(),
+        y: Math.random()
+      }
+
       var radius = Math.random() * 30
 
-      return Ball.create(x, y, radius);
+      return Ball.create(location, velocity, radius);
     }
   }
-
-  // ball = Ball.create(500, 200, 40)
-  // ranomBall = Ball.createRandom()
-  //
-  // balls = [ball, randomBall]
-  // balls.forEach(function (ball) {
-  //   ball.move()
-  //   ball.draw()
-  // })
 
 // })()
