@@ -7,6 +7,7 @@
     start: function () {
       setInterval(this.tick.bind(this), 1000/60);
       canvas.addEventListener("mousemove", this.updateMouseLocation.bind(this));
+      window.addEventListener("resize", this.handleWindowResize)
     },
 
     tick: function () {
@@ -51,6 +52,14 @@
         x: magnitude * 10 * direction.x,
         y: magnitude * 10 * direction.y
       };
+    },
+
+    handleWindowResize: function () {
+      WIDTH = window.innerWidth;
+      HEIGHT = window.innerHeight;
+
+      canvas.setAttribute('height', HEIGHT);
+      canvas.setAttribute('width', WIDTH);
     }
   }
 

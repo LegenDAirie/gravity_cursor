@@ -39,7 +39,7 @@
       } else if (belowScreen) {
         this.location.y = this.location.y - (HEIGHT + 2 * this.radius)
       } else if (aboveScreen) {
-        this.location.y = this.location.y - (HEIGHT + 2 * this.radius)
+        this.location.y = this.location.y + (HEIGHT + 2 * this.radius)
       }
     },
 
