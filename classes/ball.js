@@ -2,8 +2,9 @@
 
 // (function() {
 
-  var MAX_SPEED = 15; // pixels per frame
+  var MAX_SPEED = 4; // pixels per frame
   var MAX_INITIAL_SPEED = 2; // pixels per frame
+  var MAX_RADIUS = 50;
 
   var BALL_PROTOTYPE = {
     /* write any methods that you want all instances to have here */
@@ -47,7 +48,7 @@
     },
 
     draw: function() {
-      shapeMaker.drawCircle(this.location.x, this.location.y, this.radius);
+      shapeMaker.drawCircle(this.location.x, this.location.y, this.radius, this.color);
     },
 
     limitSpeed: function() {
@@ -65,6 +66,11 @@
   var Ball = {
     create: function(location, velocity, radius) {
       var ball = Object.create(BALL_PROTOTYPE);
+
+      var r = Math.floor(Math.random() * 255);
+      var g = Math.floor(Math.random() * 255);
+      var b = Math.floor(Math.random() * 255);
+      ball.color = 'rgba(' + r + ', ' + g + ', ' + b + ', 0.2)';
 
       ball.location = location;
       ball.velocity = velocity;
@@ -87,7 +93,7 @@
         y: speed * Math.sin(direction)
       };
 
-      var radius = Math.random() * 30;
+      var radius = Math.random() * MAX_RADIUS;
 
       return Ball.create(location, velocity, radius);
     }

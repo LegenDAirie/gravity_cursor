@@ -42,10 +42,10 @@
       };
 
       var magnitude;
-      if (distance > 10) {
+      if (distance > 100) {
         magnitude = 1 / distance;
       } else {
-        magnitude = 1 / 10;
+        magnitude = 0;
       }
 
       return {

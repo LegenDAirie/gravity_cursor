@@ -3,9 +3,11 @@
 // (function() {
 
   var shapeMaker = {
-    drawCircle: function(x, y, radius) {
+    drawCircle: function(x, y, radius, color) {
       context.beginPath();
       context.lineWidth = 2;
+
+      context.fillStyle = color;
 
       context.arc(
         x, // x
@@ -17,6 +19,7 @@
       );
 
       context.stroke();
+      context.fill();
     }
   }
 
