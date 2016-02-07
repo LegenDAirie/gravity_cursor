@@ -2,7 +2,8 @@
 
 // (function() {
 
-  var MAX_SPEED = 2; // pixels per frame
+  var MAX_SPEED = 15; // pixels per frame
+  var MAX_INITIAL_SPEED = 2; // pixels per frame
 
   var BALL_PROTOTYPE = {
     /* write any methods that you want all instances to have here */
@@ -12,6 +13,8 @@
 
       this.velocity.x += acceleration.x;
       this.velocity.y += acceleration.y;
+
+      this.limitSpeed();
 
       this.location.x += this.velocity.x;
       this.location.y += this.velocity.y;
@@ -45,6 +48,17 @@
 
     draw: function() {
       shapeMaker.drawCircle(this.location.x, this.location.y, this.radius);
+    },
+
+    limitSpeed: function() {
+      var currentSpeed = Vector.magnitude(this.velocity);
+
+      if (currentSpeed > MAX_SPEED) {
+        var normalizedVector = Vector.normalize(this.velocity);
+
+        this.velocity.x = normalizedVector.x * MAX_SPEED;
+        this.velocity.y = normalizedVector.y * MAX_SPEED;
+      }
     }
   }
 
@@ -66,7 +80,7 @@
         y: Math.random() * HEIGHT
       };
 
-      var speed = Math.random() * MAX_SPEED;
+      var speed = Math.random() * MAX_INITIAL_SPEED;
       var direction = Math.random() * 2 * Math.PI;
       var velocity = {
         x: speed * Math.cos(direction),
