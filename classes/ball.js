@@ -7,12 +7,11 @@
   var BALL_PROTOTYPE = {
     /* write any methods that you want all instances to have here */
     /* instance methods */
-    move: function() {
-      // ball.acceleration.x += force.x;
-      // ball.acceleration.y += force.y;
+    move: function(getAcceleration) {
+      var acceleration = getAcceleration(this.location)
 
-      this.velocity.x += this.acceleration.x;
-      this.velocity.y += this.acceleration.y;
+      this.velocity.x += acceleration.x;
+      this.velocity.y += acceleration.y;
 
       this.location.x += this.velocity.x;
       this.location.y += this.velocity.y;
