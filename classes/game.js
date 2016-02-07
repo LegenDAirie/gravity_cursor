@@ -12,6 +12,8 @@
       // console.log('game tick');
       this.balls.forEach(function (ball) {
         ball.move()
+        // ball.outOfBounds()
+        ball.wrap()
         ball.draw()
       })
     }
@@ -24,7 +26,7 @@
 
       /* INITIALIZATION CRAP */
       game.balls = []
-      for (var i = 0; i < 200; i ++) {
+      for (var i = 0; i < 20; i ++) {
         game.balls[i] = Ball.createRandom()
       }
 

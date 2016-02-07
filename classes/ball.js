@@ -18,6 +18,32 @@
       this.location.y += this.velocity.y;
     },
 
+    outOfBounds: function() {
+     return (
+       this.location.x - this.radius > WIDTH ||
+       this.location.x + this.radius < 0 ||
+       this.location.y - this.radius > HEIGHT ||
+       this.location.y + this.radius < 0
+     )
+    },
+
+    wrap() {
+      var rightOfScreen = this.location.x - this.radius > WIDTH
+      var leftOfScreen = this.location.x + this.radius < 0
+      var belowScreen = this.location.y - this.radius > HEIGHT
+      var aboveScreen = this.location.y + this.radius < 0
+
+      if (rightOfScreen) {
+        this.location.x = this.location.x - (WIDTH + 2 * this.radius)
+      } else if (leftOfScreen) {
+        this.location.x = this.location.x + (WIDTH + 2 * this.radius)
+      } else if (belowScreen) {
+        this.location.y = this.location.y - (HEIGHT + 2 * this.radius)
+      } else if (aboveScreen) {
+        this.location.y = this.location.y - (HEIGHT + 2 * this.radius)
+      }
+    },
+
     draw: function() {
       shapeMaker.drawCircle(this.location.x, this.location.y, this.radius);
     }
